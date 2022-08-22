@@ -1,13 +1,8 @@
-<div
-  class="content-header"
-  style="display: flex; justify-content: space-between;"
->
+<div class="content-header" style="display: flex; justify-content: space-between;">
   <h1>{{title}}</h1>
-  <a
-    href="/categories/add"
-    class="btn btn-success btn-sm"
-    style="margin-right: 15px;"
-  >Create</a>
+  {{#if admin.moderator}}
+  <a href="/categories/add" class="btn btn-success btn-sm" style="margin-right: 15px;">Create</a>
+  {{/if}}
 </div>
 
 <!-- Main content -->
@@ -18,20 +13,10 @@
       <h3 class="card-title">{{title}}</h3>
 
       <div class="card-tools">
-        <button
-          type="button"
-          class="btn btn-tool"
-          data-card-widget="collapse"
-          title="Collapse"
-        >
+        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
           <i class="fas fa-minus"></i>
         </button>
-        <button
-          type="button"
-          class="btn btn-tool"
-          data-card-widget="remove"
-          title="Remove"
-        >
+        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
           <i class="fas fa-times"></i>
         </button>
       </div>
@@ -61,71 +46,63 @@
         </thead>
         <tbody>
           {{#each categories}}
-            <tr>
-              <td>
-                #
-              </td>
-              <td>
-                <a>
-                  {{categoryName}}
-                </a>
-                <br />
-                <small>
-                  Created 15.08.2022
-                </small>
-              </td>
-              <td>
-                <ul class="list-inline">
-                  <li class="list-inline-item">
-                    <img
-                      alt="Avatar"
-                      class="table-avatar"
-                      src="{{categoryImg}}"
-                    />
-                  </li>
+          <tr>
+            <td>
+              #
+            </td>
+            <td>
+              <a>
+                {{categoryName}}
+              </a>
+              <br />
+              <small>
+                Created 15.08.2022
+              </small>
+            </td>
+            <td>
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <img alt="Avatar" class="table-avatar" src="{{categoryImg}}" />
+                </li>
 
-                </ul>
-              </td>
-              <td class="project_progress">
-                <div class="progress progress-sm">
-                  <div
-                    class="progress-bar bg-green"
-                    role="progressbar"
-                    aria-valuenow="57"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                    style="width: 57%"
-                  >
-                  </div>
+              </ul>
+            </td>
+            <td class="project_progress">
+              <div class="progress progress-sm">
+                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0"
+                  aria-valuemax="100" style="width: 57%">
                 </div>
-                <small>
-                  57% Complete
-                </small>
-              </td>
-              <td class="project-state">
-                <span class="badge badge-success">Success</span>
-              </td>
-              <td class="project-actions text-right">
-                <a class="btn btn-primary btn-sm" href="/products/{{_id}}">
-                  <i class="fas fa-folder">
-                  </i>
-                  View
-                </a>
-                <a class="btn btn-info btn-sm" href="/categories/edit/{{id}}">
-                  <i class="fas fa-pencil-alt">
-                  </i>
-                  Edit
-                </a>
-                <a
-                  class="btn btn-danger btn-sm"
-                  href="/categories/delete/{{id}}"
-                >
-                  <i class="fas fa-trash">
-                  </i>
-                  Delete
-                </a>
-              </td>
-            </tr>
+              </div>
+              <small>
+                57% Complete
+              </small>
+            </td>
+            <td class="project-state">
+              <span class="badge badge-success">Success</span>
+            </td>
+            <td class="project-actions text-right">
+              <a class="btn btn-primary btn-sm" href="/products/{{_id}}">
+                <i class="fas fa-folder">
+                </i>
+                View
+              </a>
+              {{#if ../admin.moderator}}
+
+              <a class="btn btn-info btn-sm" href="/categories/edit/{{id}}">
+                <i class="fas fa-pencil-alt">
+                </i>
+                Edit
+              </a>
+              {{/if}}
+              {{#if ../admin.moderator}}
+              <a class="btn btn-danger btn-sm" href="/categories/delete/{{id}}">
+                <i class="fas fa-trash">
+                </i>
+                Delete
+              </a>
+              {{/if}}
+            </td>
+          </tr>
           {{/each}}
         </tbody>
       </table>

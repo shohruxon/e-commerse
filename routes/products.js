@@ -2,6 +2,7 @@ const { Router } = require("express");
 const router = Router();
 const Products = require("../model/products");
 const Categories = require("../model/category");
+const admin = require("../model/admin");
 
 router.get("/", async (req, res) => {
   const products = await Products.find().populate("category");
@@ -9,6 +10,7 @@ router.get("/", async (req, res) => {
   res.render("products", {
     title: "Products",
     products,
+
   });
 });
 
